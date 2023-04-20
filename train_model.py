@@ -21,7 +21,7 @@ from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 
-# Dinh nghia cac bien
+# Định nghĩa kí tự
 
 gestures = {'AI': 'A',
            'BI': 'B',
@@ -132,7 +132,7 @@ def process_data(X_data, y_data):
     y_data = to_categorical(y_data)
     return X_data, y_data
 
-# Ham duuyet thu muc anh dung de train
+# Ham duyet thu muc anh dung de train
 def walk_file_tree(image_path):
     X_data = []
     y_data = []
