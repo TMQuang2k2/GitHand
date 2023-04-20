@@ -1,4 +1,3 @@
-#! /usr/bin/env python3
 
 import copy
 import cv2
@@ -6,7 +5,7 @@ import numpy as np
 from keras.models import load_model
 import time
 
-# Cac khai bao bien
+# Khai báo kí tự
 prediction = ''
 score = 0
 bgModel = None
@@ -37,10 +36,10 @@ gesture_names = {0: 'A',
                  23: 'Y',
                  24: 'Z',
                  }
-# Load model tu file da train
+# Load model đã train
 model = load_model('models/mymodel.h5')
 
-# Ham de predict xem la ky tu gi
+# Ham dự đoán kí tự
 def predict_rgb_image_vgg(image):
     image = np.array(image, dtype='float32')
     image /= 255
@@ -54,7 +53,7 @@ def predict_rgb_image_vgg(image):
     return result, score
 
 
-# Ham xoa nen khoi anh
+# hàm xoá nền
 def remove_background(frame):
     fgmask = bgModel.apply(frame, learningRate=learningRate)
     kernel = np.ones((3, 3), np.uint8)
@@ -63,7 +62,7 @@ def remove_background(frame):
     return res
 
 
-# Khai bao kich thuoc vung detection region
+# Khai bao kich thuoc vung phát hiện
 cap_region_x_begin = 0.5
 cap_region_y_end = 0.8
 
@@ -106,7 +105,7 @@ while camera.isOpened():
 
 
 
-        # Chuyen ve den trang
+        # Chuyển ảnh sang đen trắng
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         blur = cv2.GaussianBlur(gray, (blurValue, blurValue), 0)
 
@@ -132,7 +131,7 @@ while camera.isOpened():
                                 (0, 0, 255), 10, lineType=cv2.LINE_AA)
     thresh = None
 
-    # Xu ly phim bam
+    # Xử lý phím bấm 
     k = cv2.waitKey(10)
     if k == ord('q'):  # Bam q de thoat
         break
